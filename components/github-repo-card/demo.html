@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>github-repo-card demo</title>
+
+  <script src="../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="github-repo-card.html">
+  <style>
+    *,
+    *:before,
+    *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+    a {
+      color: #333;
+    }
+    a:hover {
+      color: #41a5ef;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333;
+      font-size: 14px;
+      background: url(https://raw.githubusercontent.com/subtlepatterns/SubtlePatterns/gh-pages/swirl.png) repeat;
+      background-color: #ccc;
+      overflow-y: scroll;
+    }
+    h1 {
+      font-size: 26px;
+      text-align: center;
+    }
+    .center {
+      text-align: center;
+    }
+    .wrapper {
+      width: 800px;
+      font-size: 0;
+      margin: 30px auto;
+    }
+    .col {
+      padding: 0 14px;
+    }
+    .col-half {
+      background-color: #fff;
+      position: relative;
+      width: 50%;
+      border: 1px solid #ccc;
+      margin: 0 auto;
+      font-size: 14px;
+      padding: 24px;
+      border-radius: 14px;
+      -moz-border-radius: 14px;
+      -webkit-border-radius: 14px;
+    }
+    .col-full {
+      width: 100%;
+    }
+    .config {
+      text-align: center;
+    }
+    form {
+      text-align: left;
+    }
+    input[type=text] {
+      padding: 10px 4px;
+      line-height: 24px;
+      width: 350px;
+      color: #333;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+    }
+    input[type=submit] {
+      -moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+      -webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+      box-shadow:inset 0px 1px 0px 0px #a4e271;
+      background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+      background:-moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+      background:-webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+      background:-o-linear-gradient(top, #89c403 5%, #77a809 100%);
+      background:-ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+      background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+      background-color:#89c403;
+      -moz-border-radius:6px;
+      -webkit-border-radius:6px;
+      border-radius:6px;
+      border:1px solid #74b807;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 24px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #528009;
+    }
+    input[type=submit]:hover {
+      background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+      background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+      background:-webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+      background:-o-linear-gradient(top, #77a809 5%, #89c403 100%);
+      background:-ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+      background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+      background-color:#77a809;
+    }
+    input[type=submit]:active {
+      position:relative;
+      top:1px;
+}
+    label {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    body .ribbon,
+    body .ribbon-level {
+      font-size: 40px;
+    }
+    .ribbon {
+      position: relative;
+      margin: 1em 1.5em;
+      line-height: 1.7em;
+      text-align: center;
+      color: #fff;
+    }
+    .ribbon:after, .ribbon:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      z-index: 1;
+      bottom: -.4em;
+      right: -1em;
+      width: 0;
+      height: 0;
+      border: 0.8em solid #98171c;
+      border-right: .5em solid transparent;
+      border-left-width: .8em;
+    }
+    .ribbon:before {
+      left: -1em;
+      border: 0.8em solid #98171c;
+      border-left: .5em solid transparent;
+      border-right: 0.8em solid #98171c;
+    }
+    .ribbon div {
+      position: relative;
+      z-index: 5;
+      background: #da2128;
+    }
+    .ribbon div:before, .ribbon div:after {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 100%;
+      width: 0;
+      height: 0;
+      border: 0.2em solid #290607;
+      border-left-color: #98171c;
+      border-bottom-color: #98171c;
+    }
+    .ribbon div:after {
+      right: 0;
+      border-left-color: #290607;
+      border-right-color: #98171c;
+    }
+
+    .ribbon-level {
+      position: relative;
+      margin: 1em 1em;
+      line-height: 1.7em;
+      text-align: center;
+      color: #fff;
+    }
+    .ribbon-level:after, .ribbon-level:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      right: -.6em;
+      width: 0;
+      height: 0;
+      margin-top: -.7em;
+      border: 0.7em solid #98171c;
+      border-right: .3em solid transparent;
+      border-left-width: .7em;
+    }
+    .ribbon-level:before {
+      left: -.6em;
+      border-left: .3em solid transparent;
+      border-right: 0.7em solid #98171c;
+    }
+    .ribbon-level div {
+      position: relative;
+      z-index: 5;
+      background: #da2128;
+    }
+    github-repo-card {
+      margin: 0 auto 24px auto;
+      -webkit-box-shadow: 1px 3px 4px -2px rgba(0,0,0,0.75);
+      -moz-box-shadow: 1px 3px 4px -2px rgba(0,0,0,0.75);
+      box-shadow: 1px 3px 4px -2px rgba(0,0,0,0.75);
+    }
+  </style>
+
+  <script>
+    window.onload = function() {
+      var userForm = document.forms[0];
+      var card = document.getElementsByTagName('github-repo-card')[0];
+
+      userForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var user = document.getElementById('username').value;
+        var repo = document.getElementById('repository').value;
+        card.setAttribute('user', user);
+        card.setAttribute('repo', repo);
+      });
+    }
+  </script>
+</head>
+<body unresolved>
+  <div class="wrapper">
+    <h1 class="ribbon"><div>Github Repo Widget</div></h1>
+    <div class="col col-full">
+      <github-repo-card></github-repo-card>
+    </div><!-- /.col -->
+    <div class="col col-half">
+      <div class="config">
+        <p>Try it out with a repository of your choice by entering the user and repository name below.</p>
+        <form id="user-form">
+          <label>
+            <input id="username" type="text" placeholder="Github username" autocomplete="off">
+          </label>
+          <label>
+            <input id="repository" type="text" placeholder="Project repository" autocomplete="off">
+          </label>
+          <div class="center">
+            <input type="submit" value="submit">
+          </div>
+        </form>
+      </div>
+    </div><!-- /.col -->
+    </div><!-- /.wrapper -->
+    <p class="center"><a href="https://github.com/chrisvogt/github-repo-card">Source code on GitHub</a> | Follow me on Twitter <a href="https://twitter.com/c1v0">@c1v0</a></p>
+</body>

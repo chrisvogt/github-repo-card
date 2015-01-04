@@ -1,0 +1,28 @@
+{
+  "name": "guthub-repo-card",
+  "version": "0.0.1",
+  "authors": [
+    "CJ Vogt <mail@chrisvogt.me>"
+  ],
+  "description": "A Polymer element that fetches basic repo details",
+  "main": "github-repo-card.html",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "github repo widget"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/chrisvogt/github-repo-card",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.2",
+    "core-ajax": "Polymer/core-ajax#~0.5.1"
+  }
+}

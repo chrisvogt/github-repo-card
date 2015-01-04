@@ -1,0 +1,85 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
+
+<!--
+Element that provides basic GitHub repository details for a given user/repo.
+
+## Example
+
+    <github-repo-card></github-repo-card>
+
+@element github-repo-card
+@blurb Element that provides basic GitHub repository details for a given user/repo.
+@status beta
+@homepage http://chrisvogt.github.com/github-repo-card
+-->
+<polymer-element name="github-repo-card" attributes="user repo">
+    <template>
+      <link rel="stylesheet" href="github-repo-card.css">
+
+      <core-ajax auto id="userajax" url="https://api.github.com/repos/{{user}}/{{repo}}" handleAs="json" response="{{info}}"></core-ajax>
+
+      <div class="card">
+        <header class="{{tokenList}}">
+          <a href="http://github.com" class="logo"></a>
+        </header>
+        <template if="{{info.error}}">
+          <div class="no-repo">{{info.message}}</div>
+        </template>
+        <template if="{{!info.error}}">
+          <section class="github-repo-card-title">
+            <h3>
+              <a class="owner" href="{{info.owner.html_url}}" title="{{info.owner.login}}">{{info.owner.login}}</a>
+              /
+              <a class="repo" href="{{info.html_url}}" title="{{info.name}}">{{info.name}}</a>
+            </h3>
+            <div class="github-stats">
+              <a class="watchers" title="See watchers" href="{{info.html_url}}/watchers">{{info.watchers}}</a>
+              <a class="forks" title="See forks" href="{{info.html_url}}/network/members">{{info.forks}}</a>
+            </div>
+          </section><!-- /.github-repo-card-title -->
+          <section class="github-repo-card-content">
+            <p class="description">
+              {{info.description}}
+            </p>
+            <p class="link"><a href="{{info.homepage}}">{{info.homepage}}</a></p>
+          </section><!-- /.github-repo-card-content -->
+          <section class="github-repo-card-download">
+            <div class="updated">Latest commit to the <strong>{{info.default_branch}}</strong> branch on {{info.pushed_at | dateConverter}}</div>
+            <a class="download" title="Get an archive of this repository" href="{{info.html_url}}/zipball/master">Download as Zip</a>
+          </section><!-- /.github-repo-card-download -->
+        </template>
+      </div><!-- /.card -->
+    </template>
+
+    <script>
+      Polymer('github-repo-card', {
+        /**
+         * The mandatory `user` attribute.
+         *
+         * @attribute user
+         * @type      string
+         */
+         user: 'chrisvogt',
+         /**
+          * The mandatory `repo` attribute.
+          *
+          * @attribute repo
+          * @type      string
+          */
+          repo: 'php-menu-grab-and-convert',
+          /**
+           * This `dateConverter` method is a filter used to format the date.
+           *
+           * @method dateConverter
+           */
+           dateConverter: function(value) {
+            if(typeof value !== 'undefined') {
+              var d = new Date(value);
+              return d.toDateString();
+            }
+           }
+      });
+    </script>
+
+</polymer-element>
