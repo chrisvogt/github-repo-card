@@ -2,7 +2,7 @@
 
 GitHub Repo Card is a reimagined version of Joel Sutherland's [Github jQuery Repo Widget](https://github.com/JoelSutherland/GitHub-jQuery-Repo-Widget) as a [Polymer](https://www.polymer-project.org/) element.
 
-![Github Repo Widget](https://raw.githubusercontent.com/JoelSutherland/GitHub-jQuery-Repo-Widget/master/demo/screenshot.png)
+![Github Repo Card](http://res.cloudinary.com/chrisvogt/image/upload/v1420351341/screenshot-github-repo-card_tqlf5w.png)
 
 ### Demo
 
@@ -24,8 +24,8 @@ Install using [Bower](http://bower.io):
 
 Special thanks to:
 
-* [Granze](https://github.com/Granze)/[lastfm-card](https://github.com/Granze/lastfm-card) for creating the first Polymer element I've seen, much of this repository is a hack of his.
-* [JoelSutherland](https://github.com/JoelSutherland)/[GitHub jQuery Repo Widget](https://github.com/JoelSutherland/GitHub-jQuery-Repo-Widget) for the elements design template, the parent project this element was refactored from.
+* [Granze](https://github.com/Granze)/[lastfm-card](https://github.com/Granze/lastfm-card) for his lovely LastFM-Card, which introduced me to Polymer. Much of this repository is a hack of his.
+* [JoelSutherland](https://github.com/JoelSutherland)/[GitHub jQuery Repo Widget](https://github.com/JoelSutherland/GitHub-jQuery-Repo-Widget) for the element's design and styles.
 
 ### Roadmap
 
